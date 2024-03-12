@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@/page/shows.vue": ["./src/page/shows.vue"]
     }
   },
   "exclude": ["node_modules", "dist"]

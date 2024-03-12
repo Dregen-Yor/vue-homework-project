@@ -2,7 +2,7 @@
 
 > my homework
 
-本项目基于 `Vue.js 2.9.6` `tailwindcss` 开发
+本项目基于 `Vue.js 3.4.15` `tailwindcss` 开发
 
 # 作业要求
 

@@ -6,13 +6,13 @@ import HelloWorld from './components/HelloWorld.vue'
 <template>
   <header>
     <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125"/> -->
-    <img class="w-30 w-40" src="@/assets/logo.svg"/>
+    <img class="w-40 h-40" src="@/assets/logo.png"/>
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <HelloWorld msg="第一次大作业展示" />
 
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/">主页</RouterLink>
+        <RouterLink to="/about">关于</RouterLink>
       </nav>
     </div>
   </header>
