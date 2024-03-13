@@ -1,9 +1,7 @@
-import './assets/main.css'
-
 import { createApp } from 'vue'
-import Show from './page/workshows.vue'
+import Show from './views/workshows.vue'
 import router from './router'
-import './index.css'
+import '../src/index.css'
 import 'gsap'
 
 const show= createApp(Show);

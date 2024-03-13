@@ -1,7 +1,12 @@
+<script setup>
+import HelloWorld from '../components/HelloWorld.vue'
+// import '../assets/main.css'
+</script>
 <template>
-  <main class=" text-center">
-    <h1 class=" text-3xl text-red-500">第一次大作业展示</h1>
-    <br>
-     <a href="show" target="_blank"><button class="w-32 h-32 rounded-full bg-blue-400 text-black hover:bg-blue-500">开始展示</button></a>
+  <main class="flex items-center justify-center min-h-screen max-w-6xl">
+    <img src="@/assets/logo.png" class="w-40 h-40">
+    <div class="wrappe">
+      <HelloWorld msg="第一次大作业展示" />
+    </div>
   </main>
 </template>
