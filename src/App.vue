@@ -18,49 +18,44 @@
               <ol v-if="showPowerOn">
                 <li></li>
               </ol>
-          </div>
+          </div>nup
       </div> -->
       <div>
-        
-      <el-menu
-        default-active="2"
-        class="el-menu-vertical-demo h-screen"
-        :collapse="isCollapse"
-        @open="handleOpen"
-        @close="handleClose"
-      >
-        <el-sub-menu index="1">
-          <template #title>
-            <el-icon><location /></el-icon>
-            <span>Navigator One</span>
-          </template>
-          <el-menu-item-group>
-            <template #title><span>Group One</span></template>
-            <el-menu-item index="1-1">item one</el-menu-item>
-            <el-menu-item index="1-2">item two</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group title="Group Two">
-            <el-menu-item index="1-3">item three</el-menu-item>
-          </el-menu-item-group>
-          <el-sub-menu index="1-4">
-            <template #title><span>item four</span></template>
-            <el-menu-item index="1-4-1">item one</el-menu-item>
+        <el-menu
+          default-active="2"
+          class="el-menu-vertical-demo h-screen"
+          :collapse="isCollapse"
+          @open="handleOpen"
+          @close="handleClose"
+        >
+          <el-sub-menu index="1">
+            <template #title>
+              <el-icon><House /></el-icon>
+              <span>介绍</span>
+            </template>
+            <el-menu-item-group index="1-1">
+              <RouterLink v-for="sidebar in sidebarsIntroduce" :key="sidebar" :to="sidebar.path"><el-menu-item >{{ sidebar.name }}</el-menu-item></RouterLink>
+            </el-menu-item-group>
           </el-sub-menu>
-        </el-sub-menu>
-        <el-menu-item index="2">
-          <el-icon><icon-menu /></el-icon>
-          <template #title>Navigator Two</template>
-        </el-menu-item>
-        <el-menu-item index="3" disabled>
-          <el-icon><document /></el-icon>
-          <template #title>Navigator Three</template>
-        </el-menu-item>
-        <a href="https://github.com/Dregen-Yor/vue-homework-project" target="_blank">
-        <el-menu-item index="4" class="">
-          <el-icon><img src="@/assets/github-mark.png"></el-icon>
-          <template #title>GitHub项目地址</template>
-        </el-menu-item></a>
-      </el-menu>
+          <el-sub-menu index="2">
+            <template #title>
+              <el-icon><img src="@/assets/computer.svg"></el-icon>
+              <span>开机</span>
+            </template>
+            <el-menu-item-group index="2-2">
+              <RouterLink v-for="sidebar in sidebarsPowerOn" :key="sidebar" :to="sidebar.path"><el-menu-item>{{ sidebar.name }}</el-menu-item></RouterLink>
+            </el-menu-item-group>
+          </el-sub-menu>
+          <el-menu-item index="3" disabled>
+            <el-icon><document /></el-icon>
+            <template #title>Navigator Three</template>
+          </el-menu-item>
+          <a href="https://github.com/Dregen-Yor/vue-homework-project" target="_blank">
+          <el-menu-item index="4" class="">
+            <el-icon><img src="@/assets/github-mark.png"></el-icon>
+            <template #title>GitHub项目地址</template>
+          </el-menu-item></a>
+        </el-menu>
       </div>
       
       <div class="flex-grow bg-gray-100">
@@ -79,6 +74,9 @@ export default {
           sidebarsIntroduce: [
             {path: '/', name: 'Home'},
             {path: '/about', name: 'About'}
+          ],
+          sidebarsPowerOn: [
+            {path: '/boot', name: 'Boot'},
           ]
       }
   },
@@ -101,8 +99,7 @@ export default {
 import { ref } from 'vue'
 import {
   Document,
-  Menu as IconMenu,
-  Location,
+  House,
 } from '@element-plus/icons-vue'
 
 const isCollapse = ref(true)
