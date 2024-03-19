@@ -1,29 +1,15 @@
 <template>
-  <div class="bg-gray-100">
+  <div class="bg-gray-100 ">
     <el-radio-group v-model="isCollapse" style="margin-bottom: 1px">
         <el-radio-button :value="false">展开目录</el-radio-button>
         <el-radio-button :value="true">收起目录</el-radio-button>
       </el-radio-group>
   </div>
   <main class="flex min-h-screen">
-      <!-- <div :class="{'w-64': sidebarOpen, 'w-0': !sidebarOpen}" class="bg-gray-800 text-white transition-all duration-500 overflow-hidden">
-          <div class="p-4">
-              <h1 class="text-2xl">目录</h1><br>
-              <button @click="showIntroduce=!showIntroduce"><h2 class="text-xl text-red-400">介绍</h2></button>
-              <ol v-if="showIntroduce">
-                <li  v-for="sidebar in sidebarsIntroduce" :key="sidebar"><RouterLink :to="sidebar.path">{{ sidebar.name }}</RouterLink></li>
-              </ol>
-              <br>
-              <button @click="showPowerOn=!showPowerOn"><h2 class="text-xl text-red-400">开机过程</h2></button>
-              <ol v-if="showPowerOn">
-                <li></li>
-              </ol>
-          </div>nup
-      </div> -->
-      <div>
+      <div class="fixd">
         <el-menu
           default-active="2"
-          class="el-menu-vertical-demo h-screen"
+          class="el-menu-vertical-demo h-screen fixed"
           :collapse="isCollapse"
           @open="handleOpen"
           @close="handleClose"
@@ -57,8 +43,11 @@
           </el-menu-item></a>
         </el-menu>
       </div>
+      <!-- <el-scrollbar height="400px">
+        <p v-for="item in 20" :key="item" class="scrollbar-demo-item">{{ item }}</p>
+      </el-scrollbar> -->
       
-      <div class="flex-grow bg-gray-100">
+      <div class="flex-grow bg-gray-100 h-5/6 overscroll-contain">
           <!-- <button class=" mt-3 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300" @click="toggleSidebar" ><img src="@/assets/sidebar.svg" class="w-10 h-10"></button> -->
           <RouterView class=" text-center" />
       </div>
@@ -77,6 +66,7 @@ export default {
           ],
           sidebarsPowerOn: [
             {path: '/boot', name: 'Boot'},
+            {path: '/segment', name: 'Segment'}
           ]
       }
   },
@@ -102,7 +92,7 @@ import {
   House,
 } from '@element-plus/icons-vue'
 
-const isCollapse = ref(true)
+const isCollapse = ref(false)
 
 </script>
 

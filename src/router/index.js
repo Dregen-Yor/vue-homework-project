@@ -21,6 +21,11 @@ const router = createRouter({
       path: '/boot',
       name: 'boot',
       component: () => import('../views/BootView.vue')
+    },
+    {
+      path: '/segment',
+      name: 'segment',
+      component: () => import('../views/SegmentView.vue')
     }
   ]
 })
