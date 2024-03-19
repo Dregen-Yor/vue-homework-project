@@ -6,10 +6,10 @@
       </el-radio-group>
   </div>
   <main class="flex min-h-screen">
-      <div class="fixd">
+      <div class="fixd ">
         <el-menu
           default-active="2"
-          class="el-menu-vertical-demo h-screen fixed"
+          class="el-menu-vertical-demo h-screen fixed overflow-auto"
           :collapse="isCollapse"
           @open="handleOpen"
           @close="handleClose"
@@ -47,7 +47,7 @@
         <p v-for="item in 20" :key="item" class="scrollbar-demo-item">{{ item }}</p>
       </el-scrollbar> -->
       
-      <div class="flex-grow bg-gray-100 h-5/6 overscroll-contain">
+      <div class="flex-grow bg-gray-100  overscroll-contain">
           <!-- <button class=" mt-3 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300" @click="toggleSidebar" ><img src="@/assets/sidebar.svg" class="w-10 h-10"></button> -->
           <RouterView class=" text-center" />
       </div>

@@ -10,22 +10,15 @@
                     <div class="section-copy">
                       <div class="section-group">
                         <h3 class="section-headline">
-                          精彩全收藏
-                          <br />
-                          兴趣永在线
+                          内存分段
                         </h3>
                         <p class="section-intro">
-                          告诉你一个节省流量的妙招：
-                          <br />
-                          现在网页也能离线保存了。
-                          <br />
-                          把你的知识、视频永久收藏保存，
-                          <br />
-                          不论设备离线在线，
-                          <br />
-                          让你感兴趣的内容始终在线2。
+                          曾经的一种做法如上图所示：每个应用的地址空间大小限制为一个固定的常数 bound ，也即每个应用的可用虚拟地址区间均为 [0,bound)。随后，就可以以这个大小为单位，将物理内存除了内核预留空间之外的部分划分为若干个大小相同的 插槽 (Slot) ，每个应用的所有数据都被内核放置在其中一个插槽中，对应于物理内存上的一段连续物理地址区间，假设其起始物理地址为 base，则由于二者大小相同，这个区间实际为 [base,base+bound)。
                         </p>
                       </div>
+                    </div>
+                    <div class="section-media">
+                      <img src="@/assets/simple-base-bound.png">
                     </div>  
                   </div>
                 </div>
@@ -34,26 +27,49 @@
                     <div class="section-copy">
                       <div class="section-group">
                         <h3 class="section-headline">
-                          知音笔记
-                          <br />
-                          一触即达
+                          内存分段
                         </h3>
                         <p class="section-intro">
-                          录音关联笔记，点击笔记，
-                          <br />
-                          自动跳转到相应的录音片段。
-                          <br />
-                          回顾会议、复习课程、随心批注更高效。
+                          内核开始以更细的粒度，也就是应用地址空间中的一个逻辑段作为单位来安排应用的数据在物理内存中的布局。对于每个段来说，从它在某个应用地址空间中的虚拟地址到它被实际存放在内存中的物理地址中间都要经过一个不同的线性映射，于是 MMU 需要用一对不同的 base/bound
+ 进行区分。这里由于每个段的大小都是不同的，我们也不再能仅仅使用一个 bound进行简化。当任务切换的时候，这些对寄存器也需要被切换。
                         </p>
                       </div>
                     </div>
-                    
+                    <div class="section-media">
+                      <img src="@/assets/segmentation.png">
+                    </div>  
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </section>
+    </section>
+    <section class="section-connect-6 section-card-view section-grey section-spacers">
+          <div class="sticky-wrapper">
+            <div class="sticky-content">
+              <div class="section-wrapper">
+                <div class="section-card">
+                  <div class="section-card-content section-rounded">
+                    <div class="section-copy">
+                      <div class="section-group">
+                        <h3 class="section-headline">
+                          内存分页
+                        </h3>
+                        <p class="section-intro">
+                          如上图所示，内核以页为单位进行物理内存管理。每个应用的地址空间可以被分成若干个（虚拟） 页面 (Page) ，而可用的物理内存也同样可以被分成若干个（物理） 页帧 (Frame) ，虚拟页面和物理页帧的大小相同。每个虚拟页面中的数据实际上都存储在某个物理页帧上。相比分段内存管理，分页内存管理的粒度更小且大小固定，应用地址空间中的每个逻辑段都由多个虚拟页面组成。而且每个虚拟页面在地址转换的过程中都使用与运行的应用绑定的不同的线性映射，而不像分段内存管理那样每个逻辑段都使用一个相同的线性映射。
+                        </p>
+                      </div>
+                    </div>
+                    <div class="section-media">
+                      <img src="@/assets/page-table.png">
+                    </div>  
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+    </section>
   </div>
   </div>
   
@@ -104,6 +120,7 @@ const cardViewFn = () => {
         screenWidth;
 
     // pc端
+    console.log("cardsNumber", cardsNumber);
     stickyCenter(stickyContent, stickyContent);
     const stickyTop = Number(stickyContent.getAttribute("data-top"));
 
@@ -130,9 +147,9 @@ const cardViewFn = () => {
 
     cards.forEach(function (card, index) {
       if (index > 0) {
+        console.log("index", index);
         const startTrigger = stickyTop - cardScroll * (index - 1);
-
-        gsap.to(cards[index - 1], {
+        gsap.to(cards[index -1], {
           scrollTrigger: {
             trigger: stickyWrapper,
             start: "top " + (stickyTop - cardWidth * index + cardWidth * 0.5),
@@ -161,7 +178,9 @@ const cardViewFn = () => {
           end: "bottom bottom",
           // markers: true,
           onEnter: function () {
-            card.classList.add("animated");
+            console.log(index);
+            cards[index].classList.add("animated");
+            console.log(index);
           },
         });
 
