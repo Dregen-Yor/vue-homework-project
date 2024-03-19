@@ -70,6 +70,7 @@
             </div>
           </div>
     </section>
+    
   </div>
   </div>
   
@@ -111,7 +112,7 @@ const cardViewFn = () => {
       // cardsXS = wrapper.querySelectorAll(".section-card-xs"),
       cardsNumber = cards.length,
       cardWidth = cards[0].clientWidth,
-      cardMargin = Number(window.getComputedStyle(cards[1]).getPropertyValue("margin-left").slice(0, -2)),
+      cardMargin = Number(window.getComputedStyle(cards[0]).getPropertyValue("margin-left").slice(0, -2)),
       cardScroll = cardWidth + cardMargin,
       swiperOffset =
         wrapper.getBoundingClientRect().left * 2 +
@@ -126,6 +127,7 @@ const cardViewFn = () => {
 
     ScrollTrigger.create({
       trigger: cards[0],
+      scroller: '.el-scrollbar__wrap',
       start: "bottom bottom",
       end: "bottom bottom",
       // markers: true,
@@ -137,6 +139,7 @@ const cardViewFn = () => {
     gsap.to(wrapper, {
       scrollTrigger: {
         trigger: stickyWrapper,
+        scroller: '.el-scrollbar__wrap',
         start: "top " + stickyNavHeight,
         end: "bottom 100%",
         scrub: 0,
@@ -152,6 +155,7 @@ const cardViewFn = () => {
         gsap.to(cards[index -1], {
           scrollTrigger: {
             trigger: stickyWrapper,
+            scroller: '.el-scrollbar__wrap',
             start: "top " + (stickyTop - cardWidth * index + cardWidth * 0.5),
             end: "+=" + cardWidth * 0.5,
             scrub: 0,
@@ -162,6 +166,7 @@ const cardViewFn = () => {
         gsap.to(card.querySelector(".section-card-content"), {
           scrollTrigger: {
             trigger: card,
+            scroller: '.el-scrollbar__wrap',
             start: "top " + startTrigger,
             end: "+=" + cardScroll / 3,
             scrub: 0,
@@ -174,6 +179,7 @@ const cardViewFn = () => {
 
         ScrollTrigger.create({
           trigger: card,
+          scroller: '.el-scrollbar__wrap',
           start: "top " + (startTrigger - cardWidth * 0.8),
           end: "bottom bottom",
           // markers: true,
@@ -186,6 +192,7 @@ const cardViewFn = () => {
 
         ScrollTrigger.create({
           trigger: card,
+          scroller: '.el-scrollbar__wrap',
           start: "top " + startTrigger,
           end: "bottom bottom",
           // markers: true,

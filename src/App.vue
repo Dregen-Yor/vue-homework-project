@@ -6,50 +6,50 @@
       </el-radio-group>
   </div>
   <main class="flex min-h-screen">
+    <!-- <el-scrollbar height="1000px" class=" fixed" id="1"> -->
       <div class="fixd ">
-        <el-menu
-          default-active="2"
-          class="el-menu-vertical-demo h-screen fixed overflow-auto"
-          :collapse="isCollapse"
-          @open="handleOpen"
-          @close="handleClose"
-        >
-          <el-sub-menu index="1">
-            <template #title>
-              <el-icon><House /></el-icon>
-              <span>介绍</span>
-            </template>
-            <el-menu-item-group index="1-1">
-              <RouterLink v-for="sidebar in sidebarsIntroduce" :key="sidebar" :to="sidebar.path"><el-menu-item >{{ sidebar.name }}</el-menu-item></RouterLink>
-            </el-menu-item-group>
-          </el-sub-menu>
-          <el-sub-menu index="2">
-            <template #title>
-              <el-icon><img src="@/assets/computer.svg"></el-icon>
-              <span>开机</span>
-            </template>
-            <el-menu-item-group index="2-2">
-              <RouterLink v-for="sidebar in sidebarsPowerOn" :key="sidebar" :to="sidebar.path"><el-menu-item>{{ sidebar.name }}</el-menu-item></RouterLink>
-            </el-menu-item-group>
-          </el-sub-menu>
-          <el-menu-item index="3" disabled>
-            <el-icon><document /></el-icon>
-            <template #title>Navigator Three</template>
-          </el-menu-item>
-          <a href="https://github.com/Dregen-Yor/vue-homework-project" target="_blank">
-          <el-menu-item index="4" class="">
-            <el-icon><img src="@/assets/github-mark.png"></el-icon>
-            <template #title>GitHub项目地址</template>
-          </el-menu-item></a>
-        </el-menu>
+          <el-menu
+            default-active="2"
+            class="el-menu-vertical-demo h-screen fixed overflow-auto"
+            :collapse="isCollapse"
+            @open="handleOpen"
+            @close="handleClose"
+          >
+            <el-sub-menu index="1">
+              <template #title>
+                <el-icon><House /></el-icon>
+                <span>介绍</span>
+              </template>
+              <el-menu-item-group index="1-1">
+                <RouterLink v-for="sidebar in sidebarsIntroduce" :key="sidebar" :to="sidebar.path"><el-menu-item >{{ sidebar.name }}</el-menu-item></RouterLink>
+              </el-menu-item-group>
+            </el-sub-menu>
+            <el-sub-menu index="2">
+              <template #title>
+                <el-icon><img src="@/assets/computer.svg"></el-icon>
+                <span>开机</span>
+              </template>
+              <el-menu-item-group index="2-2">
+                <RouterLink v-for="sidebar in sidebarsPowerOn" :key="sidebar" :to="sidebar.path"><el-menu-item>{{ sidebar.name }}</el-menu-item></RouterLink>
+              </el-menu-item-group>
+            </el-sub-menu>
+            <el-menu-item index="3" disabled>
+              <el-icon><document /></el-icon>
+              <template #title>Navigator Three</template>
+            </el-menu-item>
+            <a href="https://github.com/Dregen-Yor/vue-homework-project" target="_blank">
+            <el-menu-item index="4" class="">
+              <el-icon><img src="@/assets/github-mark.png"></el-icon>
+              <template #title>GitHub项目地址</template>
+            </el-menu-item></a>
+          </el-menu>
       </div>
-      <!-- <el-scrollbar height="400px">
-        <p v-for="item in 20" :key="item" class="scrollbar-demo-item">{{ item }}</p>
-      </el-scrollbar> -->
-      
+    <!-- </el-scrollbar> -->
       <div class="flex-grow bg-gray-100  overscroll-contain">
-          <!-- <button class=" mt-3 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300" @click="toggleSidebar" ><img src="@/assets/sidebar.svg" class="w-10 h-10"></button> -->
+        <el-scrollbar height="1000px">
           <RouterView class=" text-center" />
+        </el-scrollbar>
+          
       </div>
   </main>
 </template>
@@ -66,7 +66,8 @@ export default {
           ],
           sidebarsPowerOn: [
             {path: '/boot', name: 'Boot'},
-            {path: '/segment', name: 'Segment'}
+            {path: '/segment', name: 'Segment'},
+            {path: '/io', name: 'IO'},
           ]
       }
   },

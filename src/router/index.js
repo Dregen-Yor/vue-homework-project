@@ -26,6 +26,14 @@ const router = createRouter({
       path: '/segment',
       name: 'segment',
       component: () => import('../views/SegmentView.vue')
+    },
+    {
+      path: '/io',
+      name: 'io',
+      component: () => import('../views/IOView.vue')
+    },
+    {
+      
     }
   ]
 })

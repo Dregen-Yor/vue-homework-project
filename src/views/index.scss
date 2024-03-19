@@ -404,6 +404,7 @@
     z-index: 1;
   }
   .section-card-view {
+    
     .section-3cards {
       height: 182.291667vw;
     }
@@ -565,6 +566,7 @@
   }
 
   &.animated {
+    pointer-events: none;
     .section-wrapper {
       transform: translate3d(0, -60px, 0);
     }
