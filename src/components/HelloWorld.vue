@@ -30,7 +30,7 @@ export default {
       } else {
         clearInterval(intervalId);
       }
-    }, 100); // Adjust speed here
+    }, 10); // Adjust speed here
   },
 };
 </script>

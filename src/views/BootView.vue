@@ -5,6 +5,8 @@ import gsap from 'gsap';
 </script>
 <template>
     <div >
+      <br>
+      <br>
       <el-button @click="startBios" :disabled="step !== 1">启动 BIOS</el-button>
       <el-button @click="startBootLoader" :disabled="step !== 2">启动 Boot Loader</el-button>
       <el-button @click="startOsKernel" :disabled="step !== 3">启动操作系统内核</el-button>
