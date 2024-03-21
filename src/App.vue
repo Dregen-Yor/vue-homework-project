@@ -10,7 +10,7 @@
         </el-radio-group>
       </el-menu-item>
       <div class="flex-grow" />
-      <el-sub-menu index="one" class="">
+      <el-sub-menu index="one" >
         <template #title>
           <el-icon>
             <House />
@@ -31,6 +31,17 @@
               }}</el-menu-item></RouterLink>
         </el-menu-item-group>
       </el-sub-menu>
+      <el-sub-menu>
+          <template #title>
+            <el-icon><img src="@/assets/computer.svg"></el-icon>
+            <span>原理</span>
+          </template>
+          <el-menu-item-group index="3-3">
+            <RouterLink v-for="sidebar in sidebarsprinciples" :key="sidebar" :to="sidebar.path"><el-menu-item>{{
+                sidebar.name
+                }}</el-menu-item></RouterLink>
+          </el-menu-item-group>
+        </el-sub-menu>
       <a href="https://github.com/Dregen-Yor/vue-homework-project" target="_blank">
         <el-menu-item index="4" class="">
           <el-icon><img src="@/assets/github-mark.png"></el-icon>
@@ -66,12 +77,17 @@
                 }}</el-menu-item></RouterLink>
           </el-menu-item-group>
         </el-sub-menu>
-        <el-menu-item index="3" disabled>
-          <el-icon>
-            <document />
-          </el-icon>
-          <template #title>Navigator Three</template>
-        </el-menu-item>
+        <el-sub-menu>
+          <template #title>
+            <el-icon><img src="@/assets/computer.svg"></el-icon>
+            <span>原理</span>
+          </template>
+          <el-menu-item-group index="3-3">
+            <RouterLink v-for="sidebar in sidebarsprinciples" :key="sidebar" :to="sidebar.path"><el-menu-item>{{
+                sidebar.name
+                }}</el-menu-item></RouterLink>
+          </el-menu-item-group>
+        </el-sub-menu>
         <a href="https://github.com/Dregen-Yor/vue-homework-project" target="_blank">
           <el-menu-item index="4" class="">
             <el-icon><img src="@/assets/github-mark.png"></el-icon>
@@ -105,6 +121,9 @@ export default {
         { path: '/boot', name: 'Boot' },
         { path: '/segment', name: 'Segment' },
         { path: '/io', name: 'IO' },
+      ],
+      sidebarsprinciples: [
+        {path: '/compiler' , name: 'Compiler'},
       ]
     }
   },
@@ -124,9 +143,7 @@ export default {
 
 
 <script setup>
-import { ref } from 'vue'
 import {
-  Document,
   House,
 } from '@element-plus/icons-vue'
 

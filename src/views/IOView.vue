@@ -17,7 +17,7 @@
         <br>
         <div id="Programmed-content" class="flex space-x-12 relative h-max">
             <br><br>
-            <el-card style="max-width: 45%" class="">
+            <el-card style="width: 45%" index="2-1">
                 <template #header>
                 <div class="card-header">
                     <span>I/O传输方式</span>
@@ -27,7 +27,7 @@
                 <img src="@/assets/io-comm-mode.png" alt="I/O模型" style="width: 70vh">
 
             </el-card>
-            <el-card style="width: 45%">
+            <el-card style="width: 45%" index="22">
                 <template #header>
                 <div class="card-header">
                     <span>Programmed I/O</span>
@@ -46,7 +46,7 @@
         <br>
         <div id="Interrupt-content" class="flex space-x-12 relative h-max">
             <br><br>
-            <el-card style="width: 45%" class=" h-auto">
+            <el-card style="width: 45%" index="3-2">
                 <template #header>
                 <div class="card-header">
                     <span>Interrupt based I/O</span>
@@ -56,7 +56,7 @@
                 <img src="@/assets/interrupt-steps.png" alt="中断机制" style="width: 70vh">
                 <br>
             </el-card>
-            <el-card style="max-width: 45%">
+            <el-card style="width: 45%" index="3-1">
                 <template #header>
                 <div class="card-header">
                     <span>Interrupt based I/O</span>
@@ -78,7 +78,7 @@
         <br>
         <div id="Direct-Memory-content" class="flex space-x-12 relative h-max">
             <br><br>
-            <el-card style="width: 45%" class="">
+            <el-card style="width: 45%" index="4-1">
                 <template #header>
                 <div class="card-header">
                     <span>Interrupt based I/O</span>
@@ -88,7 +88,7 @@
                 <img src="@/assets/dma-steps.png" alt="DMA传输" style="width: 70vh">
                 <br>
             </el-card>
-            <el-card style="max-width: 45%">
+            <el-card style="width: 45%" index="4-2">
                 <template #header>
                 <div class="card-header">
                     <span>Interrupt based I/O</span>
@@ -135,7 +135,7 @@ const pageView = () => {
         start: "top top",
         end: "38% 100vh",
         pin: "#Programmed-content",
-        markers: true,
+        // markers: true,
     });
     ScrollTrigger.create({
         trigger: "#Interrupt-based",

@@ -33,7 +33,9 @@ const router = createRouter({
       component: () => import('../views/IOView.vue')
     },
     {
-      
+      path: '/compiler',
+      name: 'compiler',
+      component: () => import('../views/CompilerView.vue')
     }
   ]
 })
