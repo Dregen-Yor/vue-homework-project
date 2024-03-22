@@ -41,6 +41,11 @@ const router = createRouter({
       path: '/risc-v-binary',
       name: 'risc-v-binary',
       component: () => import('../views/risc-v-View.vue')
+    },
+    {
+      path: '/binary',
+      name: 'binary',
+      component: () => import('../views/binaryView.vue')
     }
   ]
 })
