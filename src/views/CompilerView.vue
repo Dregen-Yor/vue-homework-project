@@ -1,6 +1,6 @@
 <template>
     <br>
-    <main class="flex  items-center h-screen space-x-10">
+    <main class="flex  items-center h-screen space-x-10" v-loading="startloader">
         <br>
         <div class="h-screen w-50vh ">
             <el-form :model="form">
@@ -11,7 +11,7 @@
                         </el-select>
                     </el-form-item>
                     <el-form-item label="选择编译器">
-                        <el-select v-model="form.compiler" placeholder="请选择编译器" style="width: 20vh;" :disabled="compilerselect" >
+                        <el-select v-model="form.compiler" placeholder="请选择编译器" style="width: 20vh;" :disabled="compilerselect" v-loading="selectloader">
                             <el-option v-for="compiler in compilers" :key="compiler" :label="compiler.name" :value="compiler.id">{{ compiler.name }}</el-option>
                         </el-select>
                     </el-form-item>
@@ -26,7 +26,7 @@
                 <el-form-label label="点击编译">
                     <el-button type="primary" @click="onCompiler">编译</el-button>
                 </el-form-label>
-                <el-input type="textarea" v-model="result" style="width: 70vh; " readonly="true">
+                <el-input type="textarea" v-model="result" style="width: 70vh; " readonly="true" v-loading="resultloader">
                     <p>你好</p>
                 </el-input>
             </el-form>
@@ -41,10 +41,13 @@ import { reactive } from 'vue';
 export default{
     mounted(){
         const getLangs = () => {
+            this.startloader = true;
             axios.get("https://godbolt.org/api/languages").then(response => {
-            this.langs = response.data;
+                this.langs = response.data;
+                this.startloader = false;
             }).catch(err => {
-            console.log(err);
+                console.log(err);
+                this.startloader = false;
             });
         };
         getLangs();
@@ -55,6 +58,9 @@ export default{
             langs:[],
             compilers:[],
             Data:[],
+            selectloader:false,
+            resultloader:false,
+            startloader:false,
             form:reactive({
                 soucre:"",
                 compiler:"",
@@ -99,15 +105,33 @@ export default{
     },
     methods: {
         onlanguagechange() {
-            this.compilerselect = false;
+            this.compilerselect = true;
+            this.selectloader = true;
             axios.get("https://godbolt.org/api/compilers/"+this.form.lang).then(response => {
                 this.compilers = response.data;
+                this.compilerselect = false;
+                this.selectloader = false;
+                this.form.compile='';
             }).catch(err => {
                 console.log(err);
+                this.selectloader = false;
             });
         },
         onCompiler(){
+            if(this.form.compiler==""){
+                alert("请选择编译器");
+                return;
+            }
+            if(this.form.source==""){
+                alert("请输入源代码");
+                return;
+            }
+            if(this.form.lang==""){
+                alert("请选择语言");
+                return;
+            }
             this.result="正在编译........";
+            this.resultloader=true;
             axios.post("https://godbolt.org/api/compiler/"+this.form.compiler+"/compile",this.form).then(response =>{
                 console.log("success");
                 this.Data=response.data.asm;
@@ -115,8 +139,10 @@ export default{
                 for(let i=0;i<this.Data.length;i++){
                     this.result+=this.Data[i].text+'\n';
                 }
+                this.resultloader=false;
             }).catch(err => {
                 console.log(err);
+                this.resultloader=false;
             });
         }
     },

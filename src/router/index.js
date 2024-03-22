@@ -36,6 +36,11 @@ const router = createRouter({
       path: '/compiler',
       name: 'compiler',
       component: () => import('../views/CompilerView.vue')
+    },
+    {
+      path: '/risc-v-binary',
+      name: 'risc-v-binary',
+      component: () => import('../views/risc-v-View.vue')
     }
   ]
 })

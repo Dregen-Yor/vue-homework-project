@@ -33,7 +33,7 @@
       </el-sub-menu>
       <el-sub-menu>
           <template #title>
-            <el-icon><img src="@/assets/computer.svg"></el-icon>
+            <el-icon><img src="@/assets/binary.svg"></el-icon>
             <span>原理</span>
           </template>
           <el-menu-item-group index="3-3">
@@ -79,7 +79,7 @@
         </el-sub-menu>
         <el-sub-menu>
           <template #title>
-            <el-icon><img src="@/assets/computer.svg"></el-icon>
+            <el-icon><img src="@/assets/binary.svg"></el-icon>
             <span>原理</span>
           </template>
           <el-menu-item-group index="3-3">
@@ -124,6 +124,7 @@ export default {
       ],
       sidebarsprinciples: [
         {path: '/compiler' , name: 'Compiler'},
+        {path: '/risc-v-binary',name:'RISC-V指令集与二进制'},
       ]
     }
   },
