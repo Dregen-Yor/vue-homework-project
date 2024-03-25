@@ -14,11 +14,11 @@
   </div>
   
   <br><br>
-  <div class="flex flex-col justify-center items-center">
-    <el-card class="h-screen w-5/6">
+  <div >
       <Transition>
-        <span :key="radio1" >
-          <template v-if="radio1 === '1'">
+        <span :key="radio1" class="flex flex-col justify-center items-center">
+          <el-card class="h-screen w-5/6 relative">
+          <div v-if="radio1 === '1'" class="relative">
             <h2>十进制整数转二进制</h2>
             <el-input v-model="input1" placeholder="请输入整数(-128~+127)" class="InputStyle"></el-input>
             <Transition>
@@ -27,40 +27,42 @@
                 <p style="text-align: center;"> 反码：{{ IntegerInverseCode }} </p>
                 <p style="text-align: center;"> 补码：{{ IntegerComplement }} </p>
                 <p style="width: 80%; margin: auto; display: block;">
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机器数通常是带有符号的（指有正数和负数之分），计算机用最高位存放符号，这个 bit 一般叫做符号位。 正数的符号位为 0，
-              负数的符号位为
-              1。比如，十进制中的数 +7 ，计算机字长为8位，转换成二进制就是 0 0 0 0 0 1 1 1（一个 byte 有 8bit，有效的取值范围是 -128 ~ +127）。
-            </p>
-            <p style="width: 80%; margin: auto; display: block;">
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;十进制数据的二进制表现形式就是原码，原码最左边的一个数字就是符号位，0为正，1为负。
-            </p>
-            <p style="width: 80%; margin: auto; display: block;">
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;正数的反码是其本身（等于原码），负数的反码是符号位保持不变，其余位取反。 反码的存在是为了正确计算负数，因为原码不能用于计算负数。
-            </p>
-            <p style="width: 80%; margin: auto; display: block;">
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;正数的补码是其本身，负数的补码等于其反码 +1。因为反码不能解决负数跨零（类似于 -6 + 7）的问题，所以补码出现了。
-            </p>
-            <p style="width: 80%; margin: auto; display: block;">
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在计算机当中都是使用补码来进行计算和存储的。补码很好的解决了反码负数不能跨零计算的弊端，并且补码还可以记录一个特殊的值
-              -128，这个数据在
-              1 个字节下是没有原码和反码。
-            </p>
-            <div style="text-align: center;">
-              <el-table :data="tableData" border style="width: 80%; display: inline-block;">
-                <el-table-column prop="Ten" label="十进制数字" width="180" header-align="center" align="center" />
-                <el-table-column prop="Source" label="原码" width="180" header-align="center" align="center" />
-                <el-table-column prop="Inverse" label="反码" header-align="center" align="center" />
-                <el-table-column prop="Complement" label="补码" header-align="center" align="center" />
-              </el-table>
-            </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机器数通常是带有符号的（指有正数和负数之分），计算机用最高位存放符号，这个 bit 一般叫做符号位。 正数的符号位为 0，
+                负数的符号位为
+                1。比如，十进制中的数 +7 ，计算机字长为8位，转换成二进制就是 0 0 0 0 0 1 1 1（一个 byte 有 8bit，有效的取值范围是 -128 ~ +127）。
+                </p>
+                <p style="width: 80%; margin: auto; display: block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;十进制数据的二进制表现形式就是原码，原码最左边的一个数字就是符号位，0为正，1为负。
+                </p>
+                <p style="width: 80%; margin: auto; display: block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;正数的反码是其本身（等于原码），负数的反码是符号位保持不变，其余位取反。 反码的存在是为了正确计算负数，因为原码不能用于计算负数。
+                </p>
+                <p style="width: 80%; margin: auto; display: block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;正数的补码是其本身，负数的补码等于其反码 +1。因为反码不能解决负数跨零（类似于 -6 + 7）的问题，所以补码出现了。
+                </p>
+                <p style="width: 80%; margin: auto; display: block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在计算机当中都是使用补码来进行计算和存储的。补码很好的解决了反码负数不能跨零计算的弊端，并且补码还可以记录一个特殊的值
+                  -128，这个数据在
+                  1 个字节下是没有原码和反码。
+                </p>
+                <div style="text-align: center;">
+                  <el-table :data="tableData" border style="width: 80%; display: inline-block;">
+                    <el-table-column prop="Ten" label="十进制数字" width="180" header-align="center" align="center" />
+                    <el-table-column prop="Source" label="原码" width="180" header-align="center" align="center" />
+                    <el-table-column prop="Inverse" label="反码" header-align="center" align="center" />
+                    <el-table-column prop="Complement" label="补码" header-align="center" align="center" />
+                  </el-table>
+                </div>
               </span>
             </Transition>
-          </template>
-          <template v-else>
-            <Transition>
-              <span :key="FloatIEEECode">
-                <h2>十进制浮点数转二进制</h2>
+          </div>
+          <div v-else class="relative">
+            
+              <h2>十进制浮点数转二进制</h2>
                 <el-input v-model="input2" placeholder="请输入浮点数" class="InputStyle"></el-input>
+                <Transition>
+              <span :key="FloatIEEECode">
+                
                 <p style="text-align: center;"> IEEE 754 浮点数计数标准：{{ FloatIEEECode }} </p>
                 <div style="text-align: center;">
                   <p> Sign(符号位) </p>
@@ -92,10 +94,11 @@
               </span>
 
             </Transition>
-          </template>
+          </div>
+        </el-card>
         </span>
       </Transition>
-    </el-card>
+    
     
 
   </div>
@@ -318,7 +321,7 @@ h2 {
 .v-enter-active,
 .v-leave-active {
   transition: opacity 1s ease;
-  position: fixed;
+  position: absolute;
 }
 
 .v-enter-from,

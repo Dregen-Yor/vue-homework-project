@@ -47,6 +47,11 @@ const router = createRouter({
       name: 'binary',
       component: () => import('../views/binaryView.vue')
     },
+    {
+      path: '/jump',
+      name: 'jump',
+      component: () => import('../views/JumpView.vue')
+    }
   ]
 })
 

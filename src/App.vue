@@ -126,6 +126,7 @@ export default {
         {path: '/compiler' , name: 'Compiler'},
         {path: '/risc-v-binary',name:'RISC-V指令集与二进制'},
         {path: '/binary',name:'二进制储存整数与浮点数原理'},
+        {path: '/jump',name: 'jump指令'},
       ]
     }
   },
