@@ -46,7 +46,7 @@ const router = createRouter({
       path: '/binary',
       name: 'binary',
       component: () => import('../views/binaryView.vue')
-    }
+    },
   ]
 })
 

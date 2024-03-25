@@ -17,7 +17,7 @@
           </el-icon>
           <span>介绍</span>
         </template>
-        <el-menu-item-group index="1-1">
+        <el-menu-item-group index=''>
           <RouterLink v-for="sidebar in sidebarsIntroduce" :key="sidebar" :to="sidebar.path"><el-menu-item>{{sidebar.name}}</el-menu-item></RouterLink>
         </el-menu-item-group>
       </el-sub-menu>
@@ -125,7 +125,7 @@ export default {
       sidebarsprinciples: [
         {path: '/compiler' , name: 'Compiler'},
         {path: '/risc-v-binary',name:'RISC-V指令集与二进制'},
-        {path: '/binary',name:'二进制整数与浮点数原理'}
+        {path: '/binary',name:'二进制储存整数与浮点数原理'},
       ]
     }
   },
