@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-100 ">
+  <div class="bg-gray-100 max-h-screen ">
 
     <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" :ellipsis="false"
       @select="handleSelect">
@@ -49,10 +49,10 @@
         </el-menu-item></a>
     </el-menu>
   </div>
-  <main class="flex min-h-screen">
+  <main class="flex h-5/6">
     <!-- <el-scrollbar height="1000px" class=" fixed" id="1"> -->
     <div class="fixd ">
-      <el-menu default-active="2" class="el-menu-vertical-demo h-screen fixed overflow-auto" :collapse="isCollapse"
+      <el-menu default-active="2" class="el-menu-vertical-demo max-h-screen fixed overflow-auto" :collapse="isCollapse"
         @open="handleOpen" @close="handleClose">
         <el-sub-menu index="1" class="">
           <template #title>
@@ -86,6 +86,7 @@
             <RouterLink v-for="sidebar in sidebarsprinciples" :key="sidebar" :to="sidebar.path"><el-menu-item>{{
                 sidebar.name
                 }}</el-menu-item></RouterLink>
+            <a href="/jump/" target="_blank"><el-menu-item>JUMP指令</el-menu-item></a>
           </el-menu-item-group>
         </el-sub-menu>
         <a href="https://github.com/Dregen-Yor/vue-homework-project" target="_blank">
@@ -96,8 +97,8 @@
       </el-menu>
     </div>
     <!-- </el-scrollbar> -->
-    <div class="flex-grow bg-gray-100  overscroll-contain">
-      <el-scrollbar height="1000px">
+    <div class="flex-grow bg-gray-100  overscroll-contain max-h-screen">
+      <el-scrollbar height="94vh">
         <RouterView class=" text-center" />
       </el-scrollbar>
 
@@ -119,14 +120,15 @@ export default {
       ],
       sidebarsPowerOn: [
         { path: '/boot', name: 'Boot' },
+        { path: '/qemuboot',name: 'QemuBoot' },
+        { path: '/risc-v', name: 'RISC-V'},
         { path: '/segment', name: 'Segment' },
         { path: '/io', name: 'IO' },
       ],
       sidebarsprinciples: [
         {path: '/compiler' , name: 'Compiler'},
         {path: '/risc-v-binary',name:'RISC-V指令集与二进制'},
-        {path: '/binary',name:'二进制储存整数与浮点数原理'},
-        {path: '/jump',name: 'jump指令'},
+        {path: '/binary',name:'二进制储存整数与浮点数'},
       ]
     }
   },
@@ -159,6 +161,4 @@ const isCollapse = ref(false)
   width: 237px;
   min-height: screen;
 }
-
-.el-menu-item {}
 </style>

@@ -17,7 +17,7 @@
                     </el-form-item>
                 </div>
                 <el-form-item label="源代码">
-                    <el-input type="textarea" v-model="form.source" placeholder="请输入源代码" style="width: 70vh; ">你好</el-input>
+                    <d-code-editor  v-model="form.source" placeholder="请输入源代码" :options="{ language: form.lang }" style="width: 70vh;" class="h-screen">你好</d-code-editor>
                 </el-form-item>
             </el-form>
         </div>
@@ -27,10 +27,8 @@
                     <el-button type="primary" @click="onCompiler">编译</el-button>
                 </el-form-label>
                 <el-input type="textarea" v-model="result" style="width: 70vh; " readonly="true" v-loading="resultloader">
-                    <p>你好</p>
                 </el-input>
             </el-form>
-            
         </div>
     </main>
 </template>
@@ -60,7 +58,7 @@ export default{
             Data:[],
             selectloader:false,
             resultloader:false,
-            startloader:false,
+            startloader:true,
             form:reactive({
                 soucre:"",
                 compiler:"",

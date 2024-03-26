@@ -6,11 +6,24 @@ import gsap from 'gsap';
 <template>
     <div >
       <br>
+      <div>
+        <el-progress type="dashboard" :percentage="percentage" :color="colors" />
+      </div>
       <br>
       <el-button @click="startBios" :disabled="step !== 1">启动 BIOS</el-button>
       <el-button @click="startBootLoader" :disabled="step !== 2">启动 Boot Loader</el-button>
       <el-button @click="startOsKernel" :disabled="step !== 3">启动操作系统内核</el-button>
+      <br>
+      <div class="flex flex-col items-center">
+        <br>
+        <el-steps style="width: 55vh" :active="active" align-center>
+          <el-step title="启动 BIOS" description="" />
+          <el-step title="启动 Boot Loader" description="" />
+          <el-step title="启动操作系统内核" description="" />
+        </el-steps>
+      </div>
       <div class="CPU"><img src="@/assets/CPU.svg"></div>
+      <br>
       <div>CPU 模式：{{ cpuMode }}</div>
       <div>内存状态：{{ memoryStatus }}</div>
       <div class=" justify-center items-center flex">
@@ -26,13 +39,24 @@ import gsap from 'gsap';
     </div>
   </template>
   
-  <script>
+<script>
+import {ref}from 'vue';
+const colors = [
+  { color: '#f56c6c', percentage: 20 },
+  { color: '#e6a23c', percentage: 40 },
+  { color: '#5cb87a', percentage: 60 },
+  { color: '#1989fa', percentage: 80 },
+  { color: '#6f7ad3', percentage: 100 },
+]
+
   export default {
     data() {
       return {
         cpuMode: '实模式',
+        percentage :ref(10),
         memoryStatus: '未初始化',
         step: 1,
+        active:0,
         details: [
         ]
         // ...
@@ -41,9 +65,11 @@ import gsap from 'gsap';
     methods: {
       startBios() {
         gsap.to(".CPU", {duration: 2,rotation: 360});
+        this.percentage+=30;
         this.cpuMode = '实模式';
         this.memoryStatus = 'BIOS 初始化';
         this.step++;
+        this.active++;
         this.details = ['CPU开始从一个固定的物理地址0x000ffff0开始执行代码。这个地址位于ROM BIOS的最顶端，占据了64KB的内存空间',
           'ROM BIOS是只读存储器中的基本输入输出系统，负责在计算机启动时进行硬件检测、初始化，并加载操作系统',
           '下一步设置中断描述符表，它告诉CPU当特定的中断发生（比如按下键盘上某个按键）时应该执行哪些代码',
@@ -56,6 +82,8 @@ import gsap from 'gsap';
         this.cpuMode = '保护模式';
         this.memoryStatus = 'Boot Loader 初始化';
         this.step++;
+        this.percentage+=30;
+        this.active++;
         this.details = [
           '硬盘驱动器的第一个扇区通常为 主引导记录(MBR)，大小为 512 字节，主要包含 Boot Loader 和分区表两个部分',
           'BIOS 最后会将 512 字节的引导扇区加载到物理地址 0x7c00 到 0x7dff 的内存中，其中包含了 Boot Loader 程序。',
@@ -69,6 +97,8 @@ import gsap from 'gsap';
       startOsKernel() {
         this.memoryStatus = '操作系统内核初始化';
         this.step++;
+        this.percentage+=30;
+        this.active++;
         this.details = [
           '得到控制权之后，内核会检测并初始化计算机上的硬件设备，如磁盘驱动器、网络接口卡、图形卡等。',
           '之后内核会设置虚拟内存管理，为进程提供独立的地址空间。',

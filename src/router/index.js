@@ -48,10 +48,11 @@ const router = createRouter({
       component: () => import('../views/binaryView.vue')
     },
     {
-      path: '/jump',
-      name: 'jump',
-      component: () => import('../views/JumpView.vue')
-    }
+      path: '/qemuboot',
+      name: 'qemuboot',
+      component: () => import('../views/QemuView.vue')
+    },
+    
   ]
 })
 

@@ -173,6 +173,7 @@ const pageView = () => {
 .el-card {
   background-color: rgba(255, 255, 255, 0.25);
   border-color: rgba(66, 66, 66, 0.25);
+  border-radius: 25px;
 }
 .el-card__body {
   border-top-color: rgba(66, 66, 66, 0.25);
