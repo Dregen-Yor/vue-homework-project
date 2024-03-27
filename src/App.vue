@@ -64,6 +64,7 @@
           <el-menu-item-group index="1-1">
             <RouterLink v-for="sidebar in sidebarsIntroduce" :key="sidebar" :to="sidebar.path"><el-menu-item>{{
       sidebar.name }}</el-menu-item></RouterLink>
+      <a href="/about" target="_blank"><el-menu-item>About</el-menu-item></a>
           </el-menu-item-group>
         </el-sub-menu>
         <el-sub-menu index="2">
@@ -116,7 +117,6 @@ export default {
       activeIndex: ref('0'),
       sidebarsIntroduce: [
         { path: '/', name: 'Home' },
-        { path: '/about', name: 'About' }
       ],
       sidebarsPowerOn: [
         { path: '/boot', name: 'Boot' },

@@ -256,6 +256,10 @@ export default {
 .el-card__body {
   border-top-color: rgba(66, 66, 66, 0.25);
 }
+.el-button{
+    background-color: rgba(225,225,225,0.35);
+    color: rgba(8, 42, 61, 0.7)
+}
 </style>
 <style>
 .el-textarea .el-textarea__inner{
