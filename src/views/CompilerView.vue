@@ -17,18 +17,31 @@
                     </el-form-item>
                 </div>
                 <el-form-item label="源代码">
-                    <d-code-editor  v-model="form.source" placeholder="请输入源代码" :options="{ language: form.lang }" style="width: 70vh;" class="h-screen">你好</d-code-editor>
+                    <vue-monaco-editor  v-model:value="this.form.source" :options="MONACO_EDITOR_OPTIONS" style="width: 70vh; height:90vh;" :language="this.form.lang">你好</vue-monaco-editor>
                 </el-form-item>
             </el-form>
         </div>
         <div class="h-screen w-50vh">
-            <el-form class="flex flex-col space-y-5">
-                <el-form-label label="点击编译">
-                    <el-button type="primary" @click="onCompiler">编译</el-button>
-                </el-form-label>
-                <el-input type="textarea" v-model="result" style="width: 70vh; " readonly="true" v-loading="resultloader">
-                </el-input>
-            </el-form>
+                <el-form class="flex flex-col space-y-5">
+                    <el-form-label label="点击编译">
+                        <el-button type="primary" @click="onCompiler">编译</el-button>
+                    </el-form-label>
+                    <el-input type="textarea" v-model="result" style="width: 70vh; " readonly="true" v-loading="resultloader">
+                    </el-input>
+                </el-form>
+        </div>
+        <div>
+            <el-drawer v-model="drawer" title="I am the title" :with-header="false">
+                <span>
+                    <p>Java 中存在一个中间代码名为 bytecode，是 Java 代码编译后的中间代码格式。JVM 需要读取并解析字节码才能执行相应的任务</p><br>
+                    <p>从技术人员的角度看，Java 字节码是 JVM 的指令集。JVM 加载字节码格式的 class 文件，校验之后通过 JIT 编译器转换为本地机器代码执行</p><br>
+                    <p>我们可以用 javap 指令反编译.class 文件或者在此网站中编译以查看字节码</p>
+                </span>
+            </el-drawer>
+            <el-button type="primary" style="margin-left: 16px" @click="drawer = true">
+                中间代码
+            </el-button>
+            <br>
         </div>
     </main>
 </template>
@@ -54,11 +67,17 @@ export default{
         return{
             compilerselect:true,
             langs:[],
+            drawer:false,
             compilers:[],
             Data:[],
             selectloader:false,
             resultloader:false,
             startloader:true,
+            MONACO_EDITOR_OPTIONS :{
+                automaticLayout: true,
+                formatOnType: true,
+                formatOnPaste: true,
+            },
             form:reactive({
                 soucre:"",
                 compiler:"",
@@ -130,6 +149,8 @@ export default{
             }
             this.result="正在编译........";
             this.resultloader=true;
+            console.log(this.form.soucre);
+            console.log(11111111);
             axios.post("https://godbolt.org/api/compiler/"+this.form.compiler+"/compile",this.form).then(response =>{
                 console.log("success");
                 this.Data=response.data.asm;
@@ -141,6 +162,7 @@ export default{
             }).catch(err => {
                 console.log(err);
                 this.resultloader=false;
+                this.result="编译失败";
             });
         }
     },
