@@ -19,7 +19,7 @@ defineProps({
 export default {
   data() {
     return {
-      text: "本次大作业是一个基于Vue3的前端项目，使用了Vite作为构建工具，使用了Vue Router进行页面路由管理，使用了TailwindCSS以及element ui进行页面样式设计，使用了GSAP进行动画制作。",
+      text: "本次大作业是一个基于Vue3的前端项目，使用了Vite作为构建工具，使用了Vue Router进行页面路由管理，使用了TailwindCSS以及element ui进行页面样式设计，使用了GSAP进行动画制作。本项目同步发布于GitHub,供同学们参考，帮助了许多同学的页面制作，其中编译页面被多位同学参考。",
       index: 0,
     };
   },

@@ -43,7 +43,7 @@ export default {
 }
 
 .el-carousel__item:nth-child(2n + 1) {
-  background-color: #263f5d;
+  background-color: #2639c3;
   border-radius: 15px;
 }
 .pai {
